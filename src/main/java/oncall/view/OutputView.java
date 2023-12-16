@@ -7,6 +7,8 @@ import oncall.view.io.Printer;
 
 public class OutputView {
     public static final String EXCEPTION_PREFIX = "[ERROR] ";
+    public static final String FORMAT_DAY_MESSAGE = "%d월 %d일 %s ";
+    public static final String HOLYDAY_MESSAGE = "(휴일)";
 
     public static void printException(Exception e) {
         Printer.printMessageLine(EXCEPTION_PREFIX + e.getMessage());
@@ -24,10 +26,10 @@ public class OutputView {
     }
 
     private static void printDay(WorkDay workDay) {
-        Printer.printMessageUsingFormat("%d월 %d일 %s ", workDay.getMonth(), workDay.getDay(),
+        Printer.printMessageUsingFormat(FORMAT_DAY_MESSAGE, workDay.getMonth(), workDay.getDay(),
                 workDay.getDayOfWeekName());
         if (workDay.isWeekday() && workDay.isLegalHoliday()) {
-            Printer.printMessage("(휴일)");
+            Printer.printMessage(HOLYDAY_MESSAGE);
         }
     }
 }

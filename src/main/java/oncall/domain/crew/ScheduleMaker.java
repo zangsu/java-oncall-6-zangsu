@@ -31,12 +31,10 @@ public class ScheduleMaker {
     public Schedule makeSchedule(WorkDays workDays) {
         List<WorkCrew> workCrews = new ArrayList<>();
         for (WorkDay workDay : workDays.getWorkDays()) {
-
             if (workCrews.isEmpty()) {
                 workCrews.add(getFirstCrew(workDay));
                 continue;
             }
-
             Crew prevCrew = workCrews.get(workCrews.size() - 1).getCrew();
             workCrews.add(getNextCrew(workDay, prevCrew));
         }
