@@ -10,11 +10,9 @@ public class WorkDays {
     public static final int WEEKDAY_SIZE = 7;
     public static final String DATE_DALIMITER = ",";
     private static final Map<Integer, DayOfWeek> dayOfWeeks = new HashMap<>();
-    private final Month currentMonth;
     private final List<WorkDay> workDays;
 
     private WorkDays(DayOfWeek startDayOfWeek, Month currentMonth) {
-        this.currentMonth = currentMonth;
         for (int i = 1; i <= WEEKDAY_SIZE; i++) {
             dayOfWeeks.put(i % WEEKDAY_SIZE, startDayOfWeek.plus(i - 1));
         }
