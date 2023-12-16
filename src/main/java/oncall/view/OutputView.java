@@ -9,7 +9,7 @@ public class OutputView {
     public static final String EXCEPTION_PREFIX = "[ERROR] ";
 
     public static void printException(Exception e) {
-        Printer.printMessage(EXCEPTION_PREFIX + e.getMessage());
+        Printer.printMessageLine(EXCEPTION_PREFIX + e.getMessage());
     }
 
     public static void newLine() {
