@@ -25,19 +25,31 @@ public class Crews {
     }
 
     private void validateCrews(Collection<Crew> crews) {
+        validNotEmpty(crews);
+        validSize(crews);
+        validNotDuplicate(crews);
+
+    }
+
+    private void validNotEmpty(Collection<Crew> crews) {
         if (crews == null || crews.isEmpty()) {
-            throw new IllegalArgumentException("크루는 null이거나 비어있을 수 없습니다.");
+            throw OncallExceptionMaker.EMPTY_CREW.makeException();
         }
+    }
+
+    private void validSize(Collection<Crew> crews) {
         if (crews.size() < MIN_CREW_SIZE || crews.size() > MAX_CREW_SIZE) {
             throw OncallExceptionMaker.INVALID_CREW_SIZE.makeException();
         }
+    }
+
+    private void validNotDuplicate(Collection<Crew> crews) {
         int distinctCrewSize = (int) crews.stream()
                 .distinct()
                 .count();
         if (distinctCrewSize != crews.size()) {
             throw OncallExceptionMaker.DUPLICATED_CREW.makeException();
         }
-
     }
 
     public Crew getFirstCrew() {

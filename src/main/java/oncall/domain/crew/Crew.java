@@ -1,6 +1,7 @@
 package oncall.domain.crew;
 
 import java.util.Objects;
+import oncall.exception.OncallExceptionMaker;
 
 public class Crew {
     public static final int MAX_NAME_LEN = 5;
@@ -13,12 +14,12 @@ public class Crew {
     }
 
     private void validateName(String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("이름은 null이거나 빈 문자열일 수 없습니다.");
+        if (name == null || name.isBlank()) {
+            throw OncallExceptionMaker.BLANK_NAME.makeException();
         }
 
         if (name.length() > MAX_NAME_LEN) {
-            throw new IllegalArgumentException("이름은 5자 이하여야 합니다.");
+            throw OncallExceptionMaker.TOO_LONG_NAME.makeException();
         }
     }
 

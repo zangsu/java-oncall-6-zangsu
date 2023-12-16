@@ -17,7 +17,10 @@ public enum OncallExceptionMaker {
     INVALID_DAY("유효하지 않은 일입니다."),
     INVALID_CREW_SIZE("크루의 크기는 5명 이상 35명 이하여야 합니다."),
     DUPLICATED_CREW("크루의 이름은 중복될 수 없습니다."),
-    INVALID_DAY_OF_WEEK("유효하지 않은 요일입니다.");
+    INVALID_DAY_OF_WEEK("유효하지 않은 요일입니다."),
+    BLANK_NAME("이름은 공백이 될 수 없습니다."),
+    TOO_LONG_NAME("이름은 5자 이하여야 합니다."),
+    EMPTY_CREW("크루는 비어 있을 수 없습니다.");
 
     private final String message;
     private final IllegalArgumentException exception;
