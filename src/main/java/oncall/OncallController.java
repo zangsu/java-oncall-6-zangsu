@@ -1,10 +1,9 @@
 package oncall;
 
 import java.util.List;
-import oncall.domain.crew.AllCrews;
 import oncall.domain.crew.Crews;
+import oncall.domain.crew.ScheduleMaker;
 import oncall.domain.crew.WorkCrew;
-import oncall.domain.crew.WorkingSchedule;
 import oncall.domain.day.WorkDays;
 import oncall.exception.handler.RetryHandler;
 import oncall.view.InputView;
@@ -12,11 +11,11 @@ import oncall.view.OutputView;
 
 public class OncallController {
     public void run() {
-        WorkDays callendar = RetryHandler.getOrRetry(() -> getCalendar());
-        AllCrews crews = RetryHandler.getOrRetry(() -> getCrews());
+        WorkDays workDays = RetryHandler.getOrRetry(() -> getCalendar());
+        ScheduleMaker scheduleMaker = RetryHandler.getOrRetry(() -> getCrews());
 
-        WorkingSchedule workingSchedule = new WorkingSchedule(callendar, crews);
-        List<WorkCrew> workCrews = workingSchedule.getWorkCrews();
+        //WorkingSchedule workingSchedule = new WorkingSchedule(workDays, scheduleMaker);
+        List<WorkCrew> workCrews = scheduleMaker.makeSchedule(workDays);
         OutputView.printSchedule(workCrews);
     }
 
@@ -25,10 +24,10 @@ public class OncallController {
         return WorkDays.from(startDate);
     }
 
-    private AllCrews getCrews() {
+    private ScheduleMaker getCrews() {
         Crews weekdayCrews = getWeekDayCrews();
         Crews weekendCrews = getWeekendCrews();
-        return new AllCrews(weekdayCrews, weekendCrews);
+        return new ScheduleMaker(weekdayCrews, weekendCrews);
     }
 
     private Crews getWeekDayCrews() {
