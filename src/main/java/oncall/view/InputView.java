@@ -17,20 +17,23 @@ public class InputView {
         return startDate;
     }
 
-    public static List<String> getWeekdayMembers() {
-        Printer.printMessage("평일 비상 근무 순번대로 사원 닉네임을 입력하세요> ");
-        return Reader.getStringsUsingDelimiter(MEMBER_DELIMITER);
-    }
-
-    public static List<String> getWeekendMembers() {
-        Printer.printMessage("휴일 비상 근무 순번대로 사원 닉네임을 입력하세요> ");
-        return Reader.getStringsUsingDelimiter(MEMBER_DELIMITER);
-    }
-
     private static void validateDate(String startDate) {
         if (!DATE_PATTERN.matcher(startDate).matches()) {
             throw OncallExceptionMaker.INVALID_INPUT_FORMAT.makeException();
         }
     }
 
+    public static List<String> inputWeekdayMembers() {
+        return inputCrews("평일");
+    }
+
+    public static List<String> getWeekendMembers() {
+        return inputCrews("휴일");
+    }
+
+    public static List<String> inputCrews(String weekday) {
+        Printer.printMessage(weekday + " 비상 근무 순번대로 사원 닉네임을 입력하세요> ");
+        return Reader.getStringsUsingDelimiter(MEMBER_DELIMITER);
+
+    }
 }

@@ -1,6 +1,9 @@
 package oncall.domain.crew;
 
+import java.util.Collection;
 import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 import oncall.exception.OncallExceptionMaker;
 
 public class Crews {
@@ -8,12 +11,19 @@ public class Crews {
     public static final int MIN_CREW_SIZE = 5;
     private final Deque<CrewName> crews;
 
-    public Crews(Deque<CrewName> crews) {
+    private Crews(Collection<CrewName> crews) {
         validateCrews(crews);
-        this.crews = crews;
+        this.crews = new LinkedList<>(crews);
     }
 
-    private void validateCrews(Deque<CrewName> crews) {
+    public static Crews from(Collection<String> crews) {
+        List<CrewName> crewNames = crews.stream()
+                .map(CrewName::new)
+                .toList();
+        return new Crews(crewNames);
+    }
+
+    private void validateCrews(Collection<CrewName> crews) {
         if (crews == null || crews.isEmpty()) {
             throw new IllegalArgumentException("크루는 null이거나 비어있을 수 없습니다.");
         }
