@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import oncall.domain.day.WorkDay;
-import oncall.domain.day.WorkDayCalender;
+import oncall.domain.day.WorkDays;
 
 public class WorkingSchedule {
     private final List<WorkCrew> workCrews = new ArrayList<>();
 
-    public WorkingSchedule(WorkDayCalender calender, Crews weekdayCrews, Crews weekendCrews) {
+    public WorkingSchedule(WorkDays calender, Crews weekdayCrews, Crews weekendCrews) {
         for (WorkDay workDay : calender.getWorkDays()) {
             if (workDay.isWeekend() || workDay.isLegalHoliday()) {
                 Crew crew = pickCrew(weekendCrews);
