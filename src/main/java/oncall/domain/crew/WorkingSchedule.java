@@ -10,18 +10,14 @@ public class WorkingSchedule {
     private final List<WorkCrew> workCrews = new ArrayList<>();
 
     public WorkingSchedule(WorkDayCalender calender, Crews weekdayCrews, Crews weekendCrews) {
-
-        List<WorkDay> workDays = calender.getWorkDays();
-        for (WorkDay workDay : workDays) {
+        for (WorkDay workDay : calender.getWorkDays()) {
             if (workDay.isWeekend() || workDay.isLegalHoliday()) {
                 Crew crew = pickCrew(weekendCrews);
-                boolean isLegalHoliday = !workDay.isWeekend()
-                        && workDay.isLegalHoliday();
-                workCrews.add(new WorkCrew(crew, workDay, isLegalHoliday));
+                workCrews.add(new WorkCrew(crew, workDay));
                 continue;
             }
             Crew crew = pickCrew(weekdayCrews);
-            workCrews.add(new WorkCrew(crew, workDay, false));
+            workCrews.add(new WorkCrew(crew, workDay));
         }
     }
 

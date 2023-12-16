@@ -2,6 +2,7 @@ package oncall.domain.day;
 
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import oncall.exception.OncallExceptionMaker;
@@ -31,11 +32,7 @@ public enum Month {
     }
 
     public static Month of(int monthNumber) {
-        /*return Optional.ofNullable(CACHED_MONTHS.get(monthNumber))
-                .orElseThrow(OncallExceptionMaker.INVALID_MONTH::makeException);*/
-        return Arrays.stream(values())
-                .filter(month -> month.getMonthNumber() == monthNumber)
-                .findFirst()
+        return Optional.ofNullable(CACHED_MONTHS.get(monthNumber))
                 .orElseThrow(OncallExceptionMaker.INVALID_MONTH::makeException);
     }
 

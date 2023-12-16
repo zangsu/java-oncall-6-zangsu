@@ -9,16 +9,7 @@ import java.util.stream.IntStream;
 public class WorkDayCalender {
     public static final int WEEKDAY_SIZE = 7;
     public static final String DATE_DALIMITER = ",";
-    private static final List<MonthAndDate> legalHoliday = List.of(
-            new MonthAndDate(Month.JANUARY, 1),
-            new MonthAndDate(Month.MARCH, 1),
-            new MonthAndDate(Month.MAY, 5),
-            new MonthAndDate(Month.JUNE, 6),
-            new MonthAndDate(Month.AUGUST, 15),
-            new MonthAndDate(Month.OCTOBER, 3),
-            new MonthAndDate(Month.OCTOBER, 9),
-            new MonthAndDate(Month.DECEMBER, 25)
-    );
+
     private static final Map<Integer, DayOfWeek> dayOfWeeks = new HashMap<>();
     private final Month currentMonth;
 
@@ -43,12 +34,7 @@ public class WorkDayCalender {
 
     public List<WorkDay> getWorkDays() {
         return IntStream.range(1, currentMonth.getLastDay() + 1)
-                .mapToObj(day -> new WorkDay(new MonthAndDate(currentMonth, day), getDayOfWeek(day),
-                        isLegalHoliday(currentMonth, day)))
+                .mapToObj(day -> new WorkDay(new MonthAndDate(currentMonth, day), getDayOfWeek(day)))
                 .toList();
-    }
-
-    private boolean isLegalHoliday(Month currentMonth, int day) {
-        return legalHoliday.contains(new MonthAndDate(currentMonth, day));
     }
 }
