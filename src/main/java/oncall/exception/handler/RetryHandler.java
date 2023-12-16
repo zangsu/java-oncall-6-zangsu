@@ -15,8 +15,6 @@ public class RetryHandler {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
                 OutputView.printException(e);
-            } finally {
-                OutputView.newLine();
             }
         }
     }
