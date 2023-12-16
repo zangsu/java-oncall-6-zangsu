@@ -14,12 +14,19 @@ public class Crew {
     }
 
     private void validateName(String name) {
-        if (name == null || name.isBlank()) {
-            throw OncallExceptionMaker.BLANK_NAME.makeException();
-        }
+        validateNameNotBlank(name);
+        validateNameLength(name);
+    }
 
+    private void validateNameLength(String name) {
         if (name.length() > MAX_NAME_LEN) {
             throw OncallExceptionMaker.TOO_LONG_NAME.makeException();
+        }
+    }
+
+    private void validateNameNotBlank(String name) {
+        if (name == null || name.isBlank()) {
+            throw OncallExceptionMaker.BLANK_NAME.makeException();
         }
     }
 
