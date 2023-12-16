@@ -23,6 +23,10 @@ public class WorkDay {
         return day;
     }
 
+    public boolean isFirstDay() {
+        return day == 1;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

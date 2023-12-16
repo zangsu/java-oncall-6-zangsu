@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 public class WorkDayCalender {
     public static final int WEEKDAY_SIZE = 7;
@@ -50,4 +51,9 @@ public class WorkDayCalender {
     }
 
 
+    public List<WorkDay> getWorkDays() {
+        return IntStream.range(1, currentMonth.getLastDay() + 1)
+                .mapToObj(day -> new WorkDay(currentMonth, day))
+                .toList();
+    }
 }

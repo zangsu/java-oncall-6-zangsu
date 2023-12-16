@@ -2,10 +2,12 @@ package oncall;
 
 import java.util.List;
 import oncall.domain.crew.Crews;
-import oncall.domain.day.WorkDay;
+import oncall.domain.crew.WorkCrew;
+import oncall.domain.crew.WorkingSchedule;
 import oncall.domain.day.WorkDayCalender;
 import oncall.exception.handler.RetryHandler;
 import oncall.view.InputView;
+import oncall.view.OutputView;
 
 public class OncallController {
     public void run() {
@@ -13,7 +15,9 @@ public class OncallController {
         Crews weekdayCrews = RetryHandler.getOrRetry(() -> getWeekDayCrews());
         Crews weekendCrews = RetryHandler.getOrRetry(() -> getWeekendCrews());
 
-        List<WorkDay> workDays = callendar.getWorkDays();
+        WorkingSchedule workingSchedule = new WorkingSchedule(callendar, weekdayCrews, weekendCrews);
+        List<WorkCrew> workCrews = workingSchedule.getWorkCrews();
+        OutputView.printSchedule(workCrews);
     }
 
     private WorkDayCalender getCalendar() {

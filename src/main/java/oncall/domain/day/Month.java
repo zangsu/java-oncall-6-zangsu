@@ -43,4 +43,8 @@ public enum Month {
     public boolean hasDay(int day) {
         return day >= 1 && day <= lastDay;
     }
+
+    public int getLastDay() {
+        return lastDay;
+    }
 }

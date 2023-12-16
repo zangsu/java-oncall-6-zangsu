@@ -1,5 +1,7 @@
 package oncall.view;
 
+import java.util.List;
+import oncall.domain.crew.WorkCrew;
 import oncall.view.io.Printer;
 
 public class OutputView {
@@ -13,4 +15,7 @@ public class OutputView {
         Printer.printMessage("");
     }
 
+    public static void printSchedule(List<WorkCrew> workCrews) {
+        
+    }
 }
