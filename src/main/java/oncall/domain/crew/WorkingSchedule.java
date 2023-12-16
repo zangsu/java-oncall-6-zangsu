@@ -13,23 +13,23 @@ public class WorkingSchedule {
 
         List<WorkDay> workDays = calender.getWorkDays();
         for (WorkDay workDay : workDays) {
-            if (calender.isWeekend(workDay) || calender.isLegalHoliday(workDay)) {
-                CrewName crewName = pickCrew(weekendCrews);
-                boolean isLegalHoliday = !calender.isWeekend(workDay)
-                        && calender.isLegalHoliday(workDay);
-                workCrews.add(new WorkCrew(crewName, workDay, isLegalHoliday));
+            if (workDay.isWeekend() || workDay.isLegalHoliday()) {
+                Crew crew = pickCrew(weekendCrews);
+                boolean isLegalHoliday = !workDay.isWeekend()
+                        && workDay.isLegalHoliday();
+                workCrews.add(new WorkCrew(crew, workDay, isLegalHoliday));
                 continue;
             }
-            CrewName crewName = pickCrew(weekdayCrews);
-            workCrews.add(new WorkCrew(crewName, workDay, false));
+            Crew crew = pickCrew(weekdayCrews);
+            workCrews.add(new WorkCrew(crew, workDay, false));
         }
     }
 
-    private CrewName pickCrew(Crews crews) {
+    private Crew pickCrew(Crews crews) {
         if (this.workCrews.isEmpty()) {
             return crews.getFirstCrew();
         }
-        CrewName prevCrew = workCrews.get(workCrews.size() - 1).getCrewName();
+        Crew prevCrew = workCrews.get(workCrews.size() - 1).getCrew();
         return crews.getNextCrew(prevCrew);
     }
 

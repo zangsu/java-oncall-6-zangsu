@@ -3,17 +3,25 @@ package oncall.domain.crew;
 import oncall.domain.day.WorkDay;
 
 public class WorkCrew {
-    private final CrewName crewName;
+    private final Crew crew;
     private final WorkDay workDay;
     private final boolean isLegalHoliday;
 
-    public WorkCrew(CrewName crewName, WorkDay workDay, boolean isLegalHoliday) {
-        this.crewName = crewName;
+    public WorkCrew(Crew crew, WorkDay workDay, boolean isLegalHoliday) {
+        this.crew = crew;
         this.workDay = workDay;
         this.isLegalHoliday = isLegalHoliday;
     }
 
-    public CrewName getCrewName() {
-        return crewName;
+    public String getCrewName() {
+        return crew.getName();
+    }
+
+    public WorkDay getWorkDay() {
+        return workDay;
+    }
+
+    public Crew getCrew() {
+        return crew;
     }
 }

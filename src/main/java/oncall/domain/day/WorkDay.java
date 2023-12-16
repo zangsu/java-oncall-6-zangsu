@@ -1,46 +1,39 @@
 package oncall.domain.day;
 
-import java.util.Objects;
-import oncall.exception.OncallExceptionMaker;
+import java.time.DayOfWeek;
 
 public class WorkDay {
-    private final Month month;
-    private final int day;
+    private final MonthAndDate monthAndDate;
+    private final KoreaDayOfWeek dayOfWeek;
+    private final boolean isLegalHoliday;
 
-    public WorkDay(Month month, int day) {
-        validateDay(month, day);
-        this.month = month;
-        this.day = day;
+    public WorkDay(MonthAndDate monthAndDate, DayOfWeek dayOfWeek, boolean isLegalHoliday) {
+        this.monthAndDate = monthAndDate;
+        this.dayOfWeek = KoreaDayOfWeek.of(dayOfWeek);
+        this.isLegalHoliday = isLegalHoliday;
     }
 
-    private void validateDay(Month month, int day) {
-        if (!month.hasDay(day)) {
-            throw OncallExceptionMaker.INVALID_DAY.makeException();
-        }
+    public boolean isWeekend() {
+        return dayOfWeek == KoreaDayOfWeek.SATURDAY || dayOfWeek == KoreaDayOfWeek.SUNDAY;
+    }
+
+    public boolean isLegalHoliday() {
+        return isLegalHoliday;
+    }
+
+    public int getMonth() {
+        return monthAndDate.getMonth();
     }
 
     public int getDay() {
-        return day;
+        return monthAndDate.getDay();
     }
 
-    public boolean isFirstDay() {
-        return day == 1;
+    public String getDayOfWeekName() {
+        return dayOfWeek.getName();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        WorkDay workDay = (WorkDay) o;
-        return day == workDay.day && month == workDay.month;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(month, day);
+    public boolean isWeekday() {
+        return !isWeekend();
     }
 }

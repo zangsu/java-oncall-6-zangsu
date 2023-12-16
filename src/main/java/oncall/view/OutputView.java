@@ -2,6 +2,7 @@ package oncall.view;
 
 import java.util.List;
 import oncall.domain.crew.WorkCrew;
+import oncall.domain.day.WorkDay;
 import oncall.view.io.Printer;
 
 public class OutputView {
@@ -16,6 +17,17 @@ public class OutputView {
     }
 
     public static void printSchedule(List<WorkCrew> workCrews) {
-        
+        for (WorkCrew workCrew : workCrews) {
+            printDay(workCrew.getWorkDay());
+            Printer.printMessageLine(workCrew.getCrewName());
+        }
+    }
+
+    private static void printDay(WorkDay workDay) {
+        Printer.printMessageUsingFormat("%d월 %d일 %s ", workDay.getMonth(), workDay.getDay(),
+                workDay.getDayOfWeekName());
+        if (workDay.isWeekday() && workDay.isLegalHoliday()) {
+            Printer.printMessage("(휴일)");
+        }
     }
 }
