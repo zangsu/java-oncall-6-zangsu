@@ -33,4 +33,8 @@ public class Reader {
             throw OncallExceptionMaker.INVALID_INPUT_FORMAT.makeException();
         }
     }
+
+    public static void close() {
+        Console.close();
+    }
 }

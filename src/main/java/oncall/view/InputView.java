@@ -36,4 +36,8 @@ public class InputView {
         return Reader.getStringsUsingDelimiter(MEMBER_DELIMITER);
 
     }
+
+    public static void close() {
+        Reader.close();
+    }
 }

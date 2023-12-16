@@ -14,6 +14,7 @@ public class OncallController {
         WorkDays workDays = RetryHandler.getOrRetry(() -> getCalendar());
         ScheduleMaker scheduleMaker = RetryHandler.getOrRetry(() -> getCrews());
 
+        InputView.close();
         Schedule schedule = scheduleMaker.makeSchedule(workDays);
         OutputView.printSchedule(schedule);
     }
