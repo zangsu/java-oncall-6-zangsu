@@ -28,7 +28,7 @@ public class ScheduleMaker {
         return new WorkCrew(weekendCrews.getNextCrew(prevCrew), workDay);
     }
 
-    public List<WorkCrew> makeSchedule(WorkDays workDays) {
+    public Schedule makeSchedule(WorkDays workDays) {
         List<WorkCrew> workCrews = new ArrayList<>();
         for (WorkDay workDay : workDays.getWorkDays()) {
 
@@ -40,6 +40,6 @@ public class ScheduleMaker {
             Crew prevCrew = workCrews.get(workCrews.size() - 1).getCrew();
             workCrews.add(getNextCrew(workDay, prevCrew));
         }
-        return workCrews;
+        return new Schedule(workCrews);
     }
 }

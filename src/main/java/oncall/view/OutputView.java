@@ -1,6 +1,6 @@
 package oncall.view;
 
-import java.util.List;
+import oncall.domain.crew.Schedule;
 import oncall.domain.crew.WorkCrew;
 import oncall.domain.day.WorkDay;
 import oncall.view.io.Printer;
@@ -16,8 +16,8 @@ public class OutputView {
         Printer.printMessage("");
     }
 
-    public static void printSchedule(List<WorkCrew> workCrews) {
-        for (WorkCrew workCrew : workCrews) {
+    public static void printSchedule(Schedule schedule) {
+        for (WorkCrew workCrew : schedule.getSchedule()) {
             printDay(workCrew.getWorkDay());
             Printer.printMessageLine(workCrew.getCrewName());
         }
