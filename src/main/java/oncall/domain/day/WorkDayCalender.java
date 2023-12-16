@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class WorkDayCalender {
     public static final int WEEKDAY_SIZE = 7;
+    public static final String DATE_DALIMITER = ",";
     private static final List<WorkDay> legalHoliday = List.of(
             new WorkDay(Month.JANUARY, 1),
             new WorkDay(Month.MARCH, 1),
@@ -18,11 +19,21 @@ public class WorkDayCalender {
             new WorkDay(Month.DECEMBER, 25)
     );
     private static final Map<Integer, DayOfWeek> dayOfWeeks = new HashMap<>();
+    private final Month currentMonth;
 
-    public WorkDayCalender(DayOfWeek startDayOfWeek) {
+    private WorkDayCalender(DayOfWeek startDayOfWeek, Month currentMonth) {
+        this.currentMonth = currentMonth;
         for (int i = 1; i < WEEKDAY_SIZE; i++) {
             dayOfWeeks.put(i % WEEKDAY_SIZE, startDayOfWeek.plus(i));
         }
+    }
+
+    public static WorkDayCalender from(String startDate) {
+        String[] split = startDate.split(DATE_DALIMITER);
+        Month month = Month.of(Integer.parseInt(split[0]));
+        DayOfWeek dayOfWeek = KoreaDayOfWeekMapper.getDayOfWeek(split[1]);
+
+        return new WorkDayCalender(dayOfWeek, month);
     }
 
     private DayOfWeek getDayOfWeek(int day) {

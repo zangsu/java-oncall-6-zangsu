@@ -31,7 +31,7 @@ public enum Month {
         this.lastDay = lastDay;
     }
 
-    public Month of(int monthNumber) {
+    public static Month of(int monthNumber) {
         return Optional.ofNullable(CACHED_MONTHS.get(monthNumber))
                 .orElseThrow(OncallExceptionMaker.INVALID_MONTH::makeException);
     }
