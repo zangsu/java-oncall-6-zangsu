@@ -14,7 +14,9 @@ public enum OncallExceptionMaker {
     NULL_OBJECT("null인 객체가 존재합니다."),
     INVALID_VALUE("유효하지 않은 값이 존재합니다."),
     INVALID_MONTH("유효하지 않은 월입니다."),
-    INVALID_DAY("유효하지 않은 일입니다.");
+    INVALID_DAY("유효하지 않은 일입니다."),
+    INVALID_CREW_SIZE("크루의 크기는 5명 이상 35명 이하여야 합니다."),
+    DUPLICATED_CREW("크루의 이름은 중복될 수 없습니다.");
 
     private final String message;
     private final IllegalArgumentException exception;
