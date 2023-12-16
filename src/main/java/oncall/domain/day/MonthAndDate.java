@@ -19,6 +19,14 @@ public class MonthAndDate {
         }
     }
 
+    public int getMonth() {
+        return month.getMonth();
+    }
+
+    public int getDay() {
+        return day;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -34,13 +42,5 @@ public class MonthAndDate {
     @Override
     public int hashCode() {
         return Objects.hash(month, day);
-    }
-
-    public int getMonth() {
-        return month.getMonth();
-    }
-
-    public int getDay() {
-        return day;
     }
 }

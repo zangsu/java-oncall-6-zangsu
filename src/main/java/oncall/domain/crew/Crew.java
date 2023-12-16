@@ -4,7 +4,7 @@ import java.util.Objects;
 import oncall.exception.OncallExceptionMaker;
 
 public class Crew {
-    public static final int MAX_NAME_LEN = 5;
+    private static final int MAX_NAME_LEN = 5;
 
     private final String name;
 

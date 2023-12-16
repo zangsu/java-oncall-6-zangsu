@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 public class WorkDays {
-    public static final int WEEKDAY_SIZE = 7;
-    public static final String DATE_DALIMITER = ",";
+    private static final int WEEKDAY_SIZE = 7;
+    private static final String DATE_DALIMITER = ",";
     private static final Map<Integer, DayOfWeek> dayOfWeeks = new HashMap<>();
     private final List<WorkDay> workDays;
 

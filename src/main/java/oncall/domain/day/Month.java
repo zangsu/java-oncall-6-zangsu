@@ -21,7 +21,7 @@ public enum Month {
     NOVEMBER(11, 30),
     DECEMBER(12, 31);
 
-    public static final Map<Integer, Month> CACHED_MONTHS = Arrays.stream(values())
+    private static final Map<Integer, Month> CACHED_MONTHS = Arrays.stream(values())
             .collect(Collectors.toMap(Month::getMonthNumber, Function.identity()));
     private final int monthNumber;
     private final int lastDay;
@@ -36,7 +36,7 @@ public enum Month {
                 .orElseThrow(OncallExceptionMaker.INVALID_MONTH::makeException);
     }
 
-    public Integer getMonthNumber() {
+    private Integer getMonthNumber() {
         return monthNumber;
     }
 

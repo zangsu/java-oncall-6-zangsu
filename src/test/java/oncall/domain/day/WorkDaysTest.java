@@ -1,6 +1,5 @@
 package oncall.domain.day;
 
-import java.time.DayOfWeek;
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -18,15 +17,12 @@ class WorkDaysTest {
         void _5월_생성_테스트() {
             WorkDays calender = WorkDays.from("5,월");
             List<WorkDay> workDays = calender.getWorkDays();
-            DayOfWeek currentDayOfWeek = DayOfWeek.MONDAY;
             for (int i = 1; i <= 31; i++) {
                 WorkDay workDay = workDays.get(i - 1);
                 Assertions.assertThat(workDay.getMonth())
                         .isEqualTo(5);
                 Assertions.assertThat(workDay.getDay())
                         .isEqualTo(i);
-
-                System.out.println(workDay.getDayOfWeekName());
             }
         }
     }

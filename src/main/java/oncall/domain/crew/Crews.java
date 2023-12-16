@@ -7,8 +7,8 @@ import java.util.List;
 import oncall.exception.OncallExceptionMaker;
 
 public class Crews {
-    public static final int MAX_CREW_SIZE = 35;
-    public static final int MIN_CREW_SIZE = 5;
+    private static final int MIN_CREW_SIZE = 5;
+    private static final int MAX_CREW_SIZE = 35;
     private final Deque<Crew> crews;
 
     private Crews(Collection<Crew> crews) {

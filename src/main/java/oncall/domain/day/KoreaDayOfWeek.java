@@ -17,7 +17,7 @@ public enum KoreaDayOfWeek {
     FRIDAY("금", DayOfWeek.FRIDAY),
     SATURDAY("토", DayOfWeek.SATURDAY),
     SUNDAY("일", DayOfWeek.SUNDAY);
-    public static final Map<String, KoreaDayOfWeek> CACHED_DAY_OF_WEEK = Arrays.stream(values())
+    private static final Map<String, KoreaDayOfWeek> CACHED_DAY_OF_WEEK = Arrays.stream(values())
             .collect(Collectors.toMap(KoreaDayOfWeek::getName, Function.identity()));
 
     private final String name;
