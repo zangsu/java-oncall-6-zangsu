@@ -15,7 +15,7 @@ public class OutputView {
     }
 
     public static void newLine() {
-        Printer.printMessage("");
+        Printer.printMessageLine("");
     }
 
     public static void printSchedule(Schedule schedule) {
